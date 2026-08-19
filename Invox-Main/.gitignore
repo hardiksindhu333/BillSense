@@ -1,0 +1,18 @@
+# Node
+node_modules/
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Invox Data & Uploads
+backend/uploads/
+rag-service/chroma_db/
+api-testing/
+
+# OS Files
+.DS_Store

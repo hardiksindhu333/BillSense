@@ -1,0 +1,158 @@
+### ===========================
+### INVOX API TEST FILE
+### ===========================
+
+@baseUrl = http://localhost:5000
+@token = PASTE_YOUR_TOKEN_HERE
+
+### ===========================
+### HEALTH
+### ===========================
+
+GET {{baseUrl}}/api/health
+
+
+### ===========================
+### AUTH
+### ===========================
+
+### Register / Login
+POST {{baseUrl}}/api/auth/oauth/callback
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "name": "Test User",
+    "image": ""
+}
+
+###
+
+### Get current user
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+
+### ===========================
+### INVOICES
+### ===========================
+
+### Create invoice manually
+POST {{baseUrl}}/api/invoices
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "vendorName": "Amazon",
+    "vendorAddress": "Seattle, WA, USA",
+    "customerName": "Test User",
+    "customerAddress": "Delhi, India",
+    "invoiceNumber": "INV-001",
+    "subtotal": 450,
+    "taxAmount": 50,
+    "amountDue": 500,
+    "currency": "USD",
+    "invoiceDate": "2026-06-01",
+    "dueDate": "2026-06-30",
+    "notes": "Office supplies order",
+    "items": [
+        {
+            "description": "Laptop Stand",
+            "quantity": 2,
+            "unitPrice": 225,
+            "amount": 450
+        }
+    ]
+}
+
+###
+
+### Get all invoices
+GET {{baseUrl}}/api/invoices
+Authorization: Bearer {{token}}
+
+###
+
+### Get single invoice (replace ID)
+GET {{baseUrl}}/api/invoices/PASTE_INVOICE_ID_HERE
+Authorization: Bearer {{token}}
+
+###
+
+### Update invoice (replace ID)
+PUT {{baseUrl}}/api/invoices/PASTE_INVOICE_ID_HERE
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "vendorName": "Amazon",
+    "vendorAddress": "Seattle, WA, USA",
+    "customerName": "Test User",
+    "customerAddress": "Delhi, India",
+    "invoiceNumber": "INV-001",
+    "subtotal": 450,
+    "taxAmount": 50,
+    "amountDue": 500,
+    "currency": "USD",
+    "invoiceDate": "2026-06-01",
+    "dueDate": "2026-06-30",
+    "notes": "Updated notes",
+    "status": "paid",
+    "items": [
+        {
+            "description": "Laptop Stand",
+            "quantity": 2,
+            "unitPrice": 225,
+            "amount": 450
+        }
+    ]
+}
+
+###
+
+### Delete invoice (replace ID)
+DELETE {{baseUrl}}/api/invoices/PASTE_INVOICE_ID_HERE
+Authorization: Bearer {{token}}
+
+###
+
+### Export invoices as JSON
+GET {{baseUrl}}/api/invoices/export/json
+Authorization: Bearer {{token}}
+
+###
+
+### Export invoices as CSV
+GET {{baseUrl}}/api/invoices/export/csv
+Authorization: Bearer {{token}}
+
+
+### ===========================
+### RAG CHAT
+### ===========================
+
+### Check RAG service status
+GET {{baseUrl}}/api/chat/status
+Authorization: Bearer {{token}}
+
+###
+
+### Ask analytical question
+POST {{baseUrl}}/api/chat/query
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "question": "show all my pending invoices"
+}
+
+###
+
+### Ask semantic question
+POST {{baseUrl}}/api/chat/query
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "question": "which invoices mention office supplies"
+}
