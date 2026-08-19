@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+langchain-community>=0.3.0
+langchain-text-splitters
+langchain-chroma
+google-genai
+pypdf
+pymongo
+python-dotenv
+chromadb
